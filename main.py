@@ -52,6 +52,11 @@ def main():
                 raise PhoneException("This phone already exists")
             self.phones.append(Phone(phone))
 
+        def remove_phone(self, phone):
+            phones = [p.value for p in self.phones]
+            phone_index = phones.index(phone)
+            self.phones.pop(phone_index)
+
         def edit_phone(self, *args):
             phones = [p.value for p in self.phones]
             try:
@@ -101,6 +106,14 @@ def main():
     john_record = Record("John")
     john_record.add_phone("1234567890")
     john_record.add_phone("5555555555")
+    john_record.add_phone("5555566666")
+    print(
+        [p.value for p in john_record.phones] # Виведення ['1234567890', '5555555555', '5555566666']
+    )  
+    john_record.remove_phone("5555566666")
+    print(
+        [p.value for p in john_record.phones] # Виведення ['1234567890', '5555555555']
+    )  
 
     # Додавання запису John до адресної книги
     book.add_record(john_record)
